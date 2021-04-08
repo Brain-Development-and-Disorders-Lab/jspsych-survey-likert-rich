@@ -169,6 +169,7 @@ jsPsych.plugins['survey-likert-rich'] = (function() {
         'class="jspsych-survey-text-response" data-name="' +
         question.name + '" data-input-group="Q' + questionOrder[i] + '"' +
         'name="#jspsych-survey-text-response-' + questionOrder[i] + '" ' +
+        'cols=' + (trial.feedback_placeholder.length + 10) + ' rows=4 ' +
         'placeholder="' + trial.feedback_placeholder + '"></textarea>';
       html += '</div>';
     }
