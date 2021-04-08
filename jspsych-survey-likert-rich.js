@@ -62,6 +62,12 @@ jsPsych.plugins['survey-likert'] = (function() {
         default: null,
         description: 'String to display at top of the page.',
       },
+      feedback_placeholder: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Feedback placeholder text',
+        default: null,
+        description: 'String to as a placeholder in the feedback boxes.',
+      },
       scale_width: {
         type: jsPsych.plugins.parameterType.INT,
         pretty_name: 'Scale width',
@@ -156,6 +162,13 @@ jsPsych.plugins['survey-likert'] = (function() {
       }
       optionsString += '</ul>';
       html += optionsString;
+
+      // Add text box
+      html += '<input type="text" id="input-' + questionOrder[i] + '" ' +
+        'class="jspsych-survey-text-response" data-name="' +
+        questionOrder[i] + '" ' +
+        'name="#jspsych-survey-text-response-' + questionOrder[i] + '" ' +
+        'placeholder="' + trial.feedback_placeholder + '"></input>';
     }
 
     // add submit button
@@ -176,11 +189,12 @@ jsPsych.plugins['survey-likert'] = (function() {
 
           // create object to hold responses
           const questionData = {};
-          const matches = displayElement
+          const obje = {};
+          const matchesOptions = displayElement
               .querySelectorAll('#jspsych-survey-likert-form ' +
               '.jspsych-survey-likert-opts');
-          for (let index = 0; index < matches.length; index++) {
-            const id = matches[index].dataset['radioGroup'];
+          for (let index = 0; index < matchesOptions.length; index++) {
+            const id = matchesOptions[index].dataset['radioGroup'];
             const el = displayElement
                 .querySelector('input[name="' + id + '"]:checked');
             let response;
@@ -189,16 +203,45 @@ jsPsych.plugins['survey-likert'] = (function() {
             } else {
               response = parseInt(el.value);
             }
-            const obje = {};
             let name;
-            if (matches[index].attributes['data-name'].value !== '') {
-              name = matches[index].attributes['data-name'].value;
+            if (matchesOptions[index].attributes['data-name'].value !== '') {
+              name = matchesOptions[index].attributes['data-name'].value;
             } else {
               name = id;
             }
-            obje[name] = response;
-            Object.assign(questionData, obje);
+
+            obje[name] = {
+              response: response,
+            };
           }
+
+          const matchesFeedback = displayElement
+              .querySelectorAll('#jspsych-survey-likert-form ' +
+              '.jspsych-survey-text-response');
+          for (let index = 0; index < matchesFeedback.length; index++) {
+            const id = matchesFeedback[index].dataset['radioGroup'];
+            console.debug(matchesFeedback[index]);
+            // const el = displayElement
+                // .querySelector('input[name="' + id + '"]');
+            // let response;
+            // if (el === null) {
+            //   response = '';
+            // } else {
+            //   response = parseInt(el.value);
+            // }
+            // let name;
+            // if (matchesFeedback[index].attributes['data-name'].value !== '') {
+            //   name = matchesFeedback[index].attributes['data-name'].value;
+            // } else {
+            //   name = id;
+            // }
+
+            // obje[name] = {
+            //   response: response,
+            // };
+          }
+
+          Object.assign(questionData, obje);
 
           // save data
           const trialData = {
