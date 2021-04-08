@@ -164,11 +164,13 @@ jsPsych.plugins['survey-likert-rich'] = (function() {
       html += optionsString;
 
       // Add text box
-      html += '<input type="text" id="input-' + questionOrder[i] + '" ' +
+      html += '<div id="input-feedback-container">';
+      html += '<textarea id="input-' + questionOrder[i] + '" ' +
         'class="jspsych-survey-text-response" data-name="' +
         question.name + '" data-input-group="Q' + questionOrder[i] + '"' +
         'name="#jspsych-survey-text-response-' + questionOrder[i] + '" ' +
-        'placeholder="' + trial.feedback_placeholder + '"></input>';
+        'placeholder="' + trial.feedback_placeholder + '"></textarea>';
+      html += '</div>';
     }
 
     // add submit button
@@ -245,8 +247,6 @@ jsPsych.plugins['survey-likert-rich'] = (function() {
             response: questionData,
             question_order: questionOrder,
           };
-
-          console.debug(trialData);
 
           displayElement.innerHTML = '';
 
