@@ -10,7 +10,7 @@
  *
  */
 
-jsPsych.plugins['survey-likert'] = (function() {
+jsPsych.plugins['survey-likert-rich'] = (function() {
   const plugin = {};
 
   plugin.info = {
@@ -65,7 +65,7 @@ jsPsych.plugins['survey-likert'] = (function() {
       feedback_placeholder: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Feedback placeholder text',
-        default: null,
+        default: '',
         description: 'String to as a placeholder in the feedback boxes.',
       },
       scale_width: {
@@ -166,7 +166,7 @@ jsPsych.plugins['survey-likert'] = (function() {
       // Add text box
       html += '<input type="text" id="input-' + questionOrder[i] + '" ' +
         'class="jspsych-survey-text-response" data-name="' +
-        questionOrder[i] + '" ' +
+        question.name + '" data-input-group="Q' + questionOrder[i] + '"' +
         'name="#jspsych-survey-text-response-' + questionOrder[i] + '" ' +
         'placeholder="' + trial.feedback_placeholder + '"></input>';
     }
@@ -212,6 +212,7 @@ jsPsych.plugins['survey-likert'] = (function() {
 
             obje[name] = {
               response: response,
+              feedback: '',
             };
           }
 
@@ -219,26 +220,21 @@ jsPsych.plugins['survey-likert'] = (function() {
               .querySelectorAll('#jspsych-survey-likert-form ' +
               '.jspsych-survey-text-response');
           for (let index = 0; index < matchesFeedback.length; index++) {
-            const id = matchesFeedback[index].dataset['radioGroup'];
-            console.debug(matchesFeedback[index]);
-            // const el = displayElement
-                // .querySelector('input[name="' + id + '"]');
-            // let response;
-            // if (el === null) {
-            //   response = '';
-            // } else {
-            //   response = parseInt(el.value);
-            // }
-            // let name;
-            // if (matchesFeedback[index].attributes['data-name'].value !== '') {
-            //   name = matchesFeedback[index].attributes['data-name'].value;
-            // } else {
-            //   name = id;
-            // }
+            const id = matchesFeedback[index].id;
+            const el = displayElement
+                .querySelector('#' + id);
+            let feedbackText;
+            if (el === null) {
+              feedbackText = '';
+            } else {
+              feedbackText = el.value;
+            }
+            let name = id;
+            if (matchesFeedback[index].attributes['data-name'].value !== '') {
+              name = matchesFeedback[index].attributes['data-name'].value;
+            }
 
-            // obje[name] = {
-            //   response: response,
-            // };
+            obje[name].feedback = feedbackText;
           }
 
           Object.assign(questionData, obje);
@@ -249,6 +245,8 @@ jsPsych.plugins['survey-likert'] = (function() {
             response: questionData,
             question_order: questionOrder,
           };
+
+          console.debug(trialData);
 
           displayElement.innerHTML = '';
 
