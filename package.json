@@ -1,23 +1,23 @@
 {
-  "name": "jspsych-likert-survey-rich",
+  "name": "jspsych-survey-likert-rich",
   "version": "1.0.0",
   "description": "An extended version of the jsPsych Likert survey plugin, adding rich text fields optionally below questions.",
-  "main": "jspsych-likert-survey-rich.js",
+  "main": "jspsych-survey-likert-rich.js",
   "scripts": {
     "style": "gulp style",
     "test": "echo \"No test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/henry-burgess/jspsych-likert-survey-rich.git"
+    "url": "git+https://github.com/henry-burgess/jspsych-survey-likert-rich.git"
   },
   "keywords": [],
   "author": "Henry Burgess",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/henry-burgess/jspsych-likert-survey-rich/issues"
+    "url": "https://github.com/henry-burgess/jspsych-survey-likert-rich/issues"
   },
-  "homepage": "https://github.com/henry-burgess/jspsych-likert-survey-rich#readme",
+  "homepage": "https://github.com/henry-burgess/jspsych-survey-likert-rich#readme",
   "devDependencies": {
     "eslint": "^7.23.0",
     "eslint-config-google": "^0.14.0",
