@@ -1,6 +1,6 @@
 {
   "name": "jspsych-likert-survey-rich",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "An extended version of the jsPsych Likert survey plugin, adding rich text fields optionally below questions.",
   "main": "jspsych-likert-survey-rich.js",
   "scripts": {
