@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this jsPsych plugin, please cite it as below."
+authors:
+- family-names: "Burgess"
+  given-names: "Henry"
+  orcid: "https://orcid.org/0000-0002-3481-952X"
+title: "jspsych-survey-likert-rich"
+version: 1.0.1
+date-released: 2021-05-10
+url: "https://github.com/Brain-Development-and-Disorders-Lab/jspsych-survey-likert-rich"

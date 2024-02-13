@@ -1,15 +1,14 @@
 /**
- * jspsych-survey-likert
- * a jspsych plugin for measuring items on a likert scale
+ * @name jspsych-survey-likert-rich
+ * @summary A jsPsych plugin for measuring items on a Likert scale
  *
- * Josh de Leeuw
+ * @author Josh de Leeuw
  *
- * documentation: docs.jspsych.org
+ * @tutorial https://docs.jspsych.org
  *
- * Text feedback boxes added by Henry Burgess.
- *
+ * @description Likert scale plugin for jsPsych experiment. Adapted from existing version
+ * to include longer, rich text feedback boxes by Henry Burgess.
  */
-
 jsPsych.plugins['survey-likert-rich'] = (function() {
   const plugin = {};
 

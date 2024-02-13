@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/henry-burgess/jspsych-survey-likert-rich.git"
+    "url": "git+https://github.com/Brain-Development-and-Disorders-Lab/jspsych-survey-likert-rich.git"
   },
   "keywords": [],
   "author": "Henry Burgess",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/henry-burgess/jspsych-survey-likert-rich/issues"
+    "url": "https://github.com/Brain-Development-and-Disorders-Lab/jspsych-survey-likert-rich/issues"
   },
-  "homepage": "https://github.com/henry-burgess/jspsych-survey-likert-rich#readme",
+  "homepage": "https://github.com/Brain-Development-and-Disorders-Lab/jspsych-survey-likert-rich#readme",
   "devDependencies": {
     "eslint": "^7.23.0",
     "eslint-config-google": "^0.14.0",
